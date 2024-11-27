@@ -10,13 +10,13 @@ export const BarangProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const ITEMS_PER_PAGE = 5;
-  const API_URL = import.meta.env.VITE_API_URL;
+  //   const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchBarang = async (page = 1) => {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        `${API_URL}/barang?page=${page}&limit=${ITEMS_PER_PAGE}`
+        `https://test-be-ptlrt.vercel.app/api/barang?page=${page}&limit=${ITEMS_PER_PAGE}`
       );
       setBarangList(response.data.data);
       setCurrentPage(response.data.pagination.currentPage || 1);
@@ -33,7 +33,7 @@ export const BarangProvider = ({ children }) => {
     setIsLoading(true);
     try {
       const response = await axios.put(
-        `${API_URL}/barang/${id}`,
+        `https://test-be-ptlrt.vercel.app/api/barang/${id}`,
         updatedBarang
       );
       alert("Barang berhasil diperbarui!");
@@ -60,7 +60,10 @@ export const BarangProvider = ({ children }) => {
   const createBarang = async (newBarang) => {
     setIsLoading(true);
     try {
-      const response = await axios.post(`${API_URL}/barang`, newBarang);
+      const response = await axios.post(
+        `https://test-be-ptlrt.vercel.app/api/barang`,
+        newBarang
+      );
       alert("Barang berhasil ditambahkan!");
       fetchBarang();
       console.log("Response create:", response);
@@ -74,7 +77,7 @@ export const BarangProvider = ({ children }) => {
 
   const deleteBarang = async (id) => {
     try {
-      await axios.delete(`${API_URL}/barang/${id}`);
+      await axios.delete(`https://test-be-ptlrt.vercel.app/api/barang/${id}`);
       setBarangList(barangList.filter((barang) => barang._id !== id));
     } catch (error) {
       console.error("Gagal menghapus barang", error);
