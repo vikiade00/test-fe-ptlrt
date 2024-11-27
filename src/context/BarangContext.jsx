@@ -19,8 +19,8 @@ export const BarangProvider = ({ children }) => {
         `${API_URL}/barang?page=${page}&limit=${ITEMS_PER_PAGE}`
       );
       setBarangList(response.data.data);
-      setCurrentPage(response.data.pagination.currentPage);
-      setTotalPages(response.data.pagination.totalPages);
+      setCurrentPage(response.data.pagination.currentPage || 1);
+      setTotalPages(response.data.pagination.totalPages || 1);
       console.log(response);
     } catch (error) {
       console.error("Error fetching barang:", error);

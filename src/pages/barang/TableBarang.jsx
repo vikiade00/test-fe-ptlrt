@@ -42,8 +42,8 @@ const TableBarang = () => {
     return dayjs(dateString).format("MMMM D, YYYY");
   };
 
-  const filteredBarangList = barangList.filter((barang) =>
-    barang.nama_barang.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredBarangList = (barangList || []).filter((barang) =>
+    barang.nama_barang?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
